@@ -21,7 +21,7 @@ const Icon: FC<IconProps> = (props) => {
                 height: `${height}px`,
             }}
         >
-            <use xlinkHref={`/sprite.svg#${name}`}></use>
+            <use xlinkHref={`/sprite.svg#${name}`}/>
         </svg>
     );
 }

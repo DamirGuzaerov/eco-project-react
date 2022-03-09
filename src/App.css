@@ -65,6 +65,7 @@ html {
   justify-content: center;
 
   right: -22px;
+  z-index: 2;
 }
 
 .swiper-button-next::after{
@@ -88,6 +89,7 @@ html {
   justify-content: center;
 
   left: -22px;
+  z-index: 2;
 }
 
 .swiper-button-prev::after{
