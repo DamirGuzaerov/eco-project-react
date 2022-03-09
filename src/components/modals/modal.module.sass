@@ -1,3 +1,17 @@
+$button-success: rgba(7, 200, 142, 1)
+
+@mixin button-example
+  display: flex
+  height: 56px
+  justify-content: center
+  align-items: center
+  border-radius: 8px
+  border: none
+  margin-top: 32px
+  font-size: 16px
+  line-height: 24px
+
+
 .overlay
   position: fixed
   left: 0
@@ -26,6 +40,10 @@
     padding: 20px 16px
     width: 384px
 
+  input::placeholder
+    font-size: 14px
+    color: rgba(0, 11, 38, 0.4)
+
   h2
     font-style: normal
     font-weight: 600
@@ -48,8 +66,28 @@
   background: none
   border: none
 
+.modal__sendButton
+  @include button-example
+  background-color: $button-success
+  color: rgb(255, 255, 255)
+
 .modal_content
   display: flex
+  flex-direction: column
+
+.modal__underLinks
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  margin-top: 16px
+
+  a
+    color: $button-success
+
+.modal__enterForPartnersButton
+  @include button-example
+  background: rgba(62, 80, 114, 0.08)
+
 
 
 

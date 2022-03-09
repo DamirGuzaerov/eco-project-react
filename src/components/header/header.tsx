@@ -9,7 +9,7 @@ function Header() {
     const [visible, setVisible] = useState(false);
     return (
             <div className={styles.header__wrapper}>
-                <ModalTemplate visible={visible} onClose={() => {setVisible(false)}} children={LoginModal()}/>
+                <ModalTemplate visible={visible} onClose={() => {setVisible(false)}} children={LoginModal(() => setVisible(false))}/>
                 <header className={styles.header}>
                     <nav className={styles.navPanel}>
                         <div className={styles.header__logo}>

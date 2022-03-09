@@ -1,12 +1,16 @@
 import React from 'react';
 import './App.css';
 import Main from "./pages/main/main";
+import {Route, Routes} from "react-router-dom";
+import {NonAuthLayout} from "./components/layouts/NonAuthLayout";
 
 function App() {
   return (
-    <div className="App">
-        <Main/>
-    </div>
+    <Routes>
+        <Route path={''} element={<NonAuthLayout/>}>
+            <Route element={<Main/>} index/>
+        </Route>
+    </Routes>
   );
 }
 
