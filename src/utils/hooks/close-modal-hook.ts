@@ -7,9 +7,7 @@ export function useModalClose(ref: any, handler: Function) {
             if (reference === event.target) {
                 handler();
             }
-
             reference?.addEventListener('mousedown', listener);
-
             return () => reference?.removeEventListener('mousedown', listener);
         }
     }, [ref, handler]);

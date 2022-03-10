@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Main from "./pages/main/main";
 import {Route, Routes} from "react-router-dom";
-import {NonAuthLayout} from "./components/layouts/NonAuthLayout";
+import {NonAuthLayout} from "./components/layouts/nonAuthLayout";
 
 function App() {
   return (
