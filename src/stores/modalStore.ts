@@ -14,6 +14,7 @@ export class ModalStore {
     }
 
     removeModal = () => {
+        alert(this.currentModal)
         this.currentModal = null;
     }
 }

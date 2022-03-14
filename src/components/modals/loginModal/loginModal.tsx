@@ -1,6 +1,6 @@
 import defaultModalStyles from './../modal.module.sass';
 import Icon from "../../ui/icon/icon";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Formik, Form, Field} from 'formik';
 import * as Yup from 'yup';
 import {ModalTemplate} from "../modalTemplate";
@@ -8,6 +8,9 @@ import {useStores} from "../../../utils/hooks/use-stores";
 import {observer} from "mobx-react";
 
 export const LoginModal = observer(() => {
+    const {authorizationStore: {GetToken,SetToken}} = useStores();
+    const navigate = useNavigate();
+    const goToProfile = () => navigate('/profile');
 
     const SignupSchema = Yup.object().shape({
         phone: Yup.string()
@@ -20,6 +23,15 @@ export const LoginModal = observer(() => {
             .required("Введите пароль")
             .min(4, "Минимальное количество знаков - 4"),
     });
+
+    const onSubmit = (phone:string,password:string)=>{
+        SetToken(phone,password);
+        const token = GetToken();
+        if(token !== "") {
+            removeModal();
+            goToProfile();
+        }
+    }
 
     const {modalStore: {removeModal, addModal}} = useStores();
 
@@ -44,8 +56,7 @@ export const LoginModal = observer(() => {
                         password: '',
                     }}
                              validationSchema={SignupSchema}
-                             onSubmit={values => {
-                                 console.log(values)}}
+                             onSubmit={values => onSubmit(values.phone,values.password)}
                     >
                         {({ errors, touched}) =>
                             (<Form >
