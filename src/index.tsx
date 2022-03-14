@@ -6,12 +6,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
+import mainStore from "./stores/mainStore";
+import {Provider} from 'mobx-react'
+import {ModalConstructor} from "./components/modals/modalConsturctor/modalConstructor";
 
 ReactDOM.render(
   <React.StrictMode>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <Provider {...mainStore}>
+          <BrowserRouter>
+            <App />
+              <ModalConstructor/>
+          </BrowserRouter>
+      </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

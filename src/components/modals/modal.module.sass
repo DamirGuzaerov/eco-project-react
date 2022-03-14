@@ -1,5 +1,10 @@
 $button-success: rgba(7, 200, 142, 1)
 
+@mixin modal-default-font-settings
+  font-weight: 400
+  font-size: 14px
+
+
 @mixin button-example
   display: flex
   height: 56px
@@ -41,7 +46,7 @@ $button-success: rgba(7, 200, 142, 1)
     width: 384px
 
   input::placeholder
-    font-size: 14px
+    @include modal-default-font-settings
     color: rgba(0, 11, 38, 0.4)
 
   h2
@@ -81,15 +86,25 @@ $button-success: rgba(7, 200, 142, 1)
   justify-content: space-between
   margin-top: 16px
 
-  a
+  button
     color: $button-success
+    background: none
+    border: none
+    @include modal-default-font-settings
 
-  a:hover
+  button:hover
     color: #0f8d6a
 
 .modal__enterForPartnersButton
   @include button-example
   background: rgba(62, 80, 114, 0.08)
+
+.error_message
+  @include modal-default-font-settings
+  margin: 0
+  margin: 8px 0 0 15px
+  color: #FF4545
+
 
 
 
