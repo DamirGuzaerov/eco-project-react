@@ -1,8 +1,7 @@
-import React, {useState} from "react";
+import React from "react";
 import styles from "./header.module.sass";
 import Icon from "../ui/icon/icon";
 import logo from "../../assets/images/logo.svg"
-import {ModalTemplate} from "../modals/modalTemplate";
 import {LoginModal} from "../modals/loginModal/loginModal";
 import {useStores} from "../../utils/hooks/use-stores";
 import {observer} from "mobx-react";
@@ -11,7 +10,7 @@ import {Link, useNavigate} from "react-router-dom";
 const Header = observer(() => {
 
     const { modalStore: {addModal, removeModal},
-    authorizationStore:{GetToken}} = useStores();
+    authorizationStore: {GetToken}} = useStores();
     const navigate = useNavigate();
     const goToProfile = () => navigate('/profile');
 

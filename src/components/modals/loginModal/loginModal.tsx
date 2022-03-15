@@ -3,14 +3,18 @@ import Icon from "../../ui/icon/icon";
 import {Link, useNavigate} from "react-router-dom";
 import {Formik, Form, Field} from 'formik';
 import * as Yup from 'yup';
-import {ModalTemplate} from "../modalTemplate";
+import {ModalTemplate} from "../modalTemplates/modalTemplate";
 import {useStores} from "../../../utils/hooks/use-stores";
 import {observer} from "mobx-react";
+import {RegModal} from "../regModal/regModal";
+
 
 export const LoginModal = observer(() => {
-    const {authorizationStore: {GetToken,SetToken}} = useStores();
+    const {modalStore: {addModal, removeModal},
+            authorizationStore: {GetToken,SetToken}} = useStores();
     const navigate = useNavigate();
     const goToProfile = () => navigate('/profile');
+
 
     const SignupSchema = Yup.object().shape({
         phone: Yup.string()
@@ -33,22 +37,13 @@ export const LoginModal = observer(() => {
         }
     }
 
-    const {modalStore: {removeModal, addModal}} = useStores();
-
-    const closeModal = () => {
+    const changeModal = () => {
       removeModal();
+      addModal(RegModal);
     }
 
     return(
-        <ModalTemplate>
-            <div className={defaultModalStyles.modal__container}>
-                <div className={defaultModalStyles.modal__firstrow}>
-                    <h2>Вход</h2>
-                    <button className={defaultModalStyles.modal__closeButton} onClick={() => closeModal()}>
-                        <Icon name={'closeButton'} width={18} height={18}/>
-                    </button>
-                </div>
-
+        <ModalTemplate title={'Вход'}>
                 <div className={defaultModalStyles.modal_content}>
 
                     <Formik  initialValues={{
@@ -77,7 +72,7 @@ export const LoginModal = observer(() => {
                     </Formik>
 
                     <div className={defaultModalStyles.modal__underLinks}>
-                        <button>
+                        <button onClick={changeModal}>
                             Войти с помощью смс
                         </button>
                         <button>
@@ -88,7 +83,5 @@ export const LoginModal = observer(() => {
                         Вход для партнёров
                     </button>
                 </div>
-            </div>
         </ModalTemplate>
-    )
-});
+    )});
