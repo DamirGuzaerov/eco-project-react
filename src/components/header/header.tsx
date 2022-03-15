@@ -32,13 +32,11 @@ const Header = observer(() => {
                             <object data={logo} type=""/>
                         </div>
                         <ul className={styles.navList}>
-
                                 <li className={styles.navLink}>
                                     <Link to={"/"}>
                                     Главная
                                     </Link>
                                 </li>
-
                             <li className={styles.navLink}>
                                 Пункты сбора
                             </li>

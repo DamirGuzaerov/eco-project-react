@@ -42,6 +42,11 @@ export const LoginModal = observer(() => {
       addModal(RegModal);
     }
 
+    const openModal = (modal: any) => {
+        removeModal()
+        addModal(modal);
+    }
+
     return(
         <ModalTemplate title={'Вход'}>
                 <div className={defaultModalStyles.modal_content}>
@@ -75,7 +80,7 @@ export const LoginModal = observer(() => {
                         <button onClick={changeModal}>
                             Войти с помощью смс
                         </button>
-                        <button>
+                        <button onClick={() => openModal(RegModal)}>
                             Регистрация
                         </button>
                     </div>
