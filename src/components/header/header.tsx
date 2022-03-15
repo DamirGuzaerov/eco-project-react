@@ -17,7 +17,10 @@ const Header = observer(() => {
 
 
     const openModal = (modal: any) => {
-        if (GetToken() !== "") goToProfile();
+        if (GetToken() != "") {
+            goToProfile();
+            return;
+        }
         removeModal();
         addModal(modal);
     }
@@ -30,11 +33,13 @@ const Header = observer(() => {
                             <object data={logo} type=""/>
                         </div>
                         <ul className={styles.navList}>
-                            <Link to={"/"}>
+
                                 <li className={styles.navLink}>
+                                    <Link to={"/"}>
                                     Главная
+                                    </Link>
                                 </li>
-                            </Link>
+
                             <li className={styles.navLink}>
                                 Пункты сбора
                             </li>
