@@ -6,12 +6,19 @@ import {ModalTemplate} from "../modals/modalTemplate";
 import {LoginModal} from "../modals/loginModal/loginModal";
 import {useStores} from "../../utils/hooks/use-stores";
 import {observer} from "mobx-react";
+import {useNavigate} from "react-router-dom";
 
 const Header = observer(() => {
 
-    const { modalStore: {addModal, removeModal}} = useStores();
+    const { modalStore: {addModal, removeModal},
+    authorizationStore:{GetToken}} = useStores();
+    const navigate = useNavigate();
+    const goToProfile = () => navigate('/profile');
+
 
     const openModal = (modal: any) => {
+        alert(GetToken());
+        if (GetToken() !== "") goToProfile();
         removeModal();
         addModal(modal);
     }
