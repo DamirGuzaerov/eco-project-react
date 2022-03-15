@@ -6,11 +6,14 @@ import * as Yup from 'yup';
 import {ModalTemplate} from "../modalTemplate";
 import {useStores} from "../../../utils/hooks/use-stores";
 import {observer} from "mobx-react";
+import {RegModal} from "../regModal/regModal";
+
 
 export const LoginModal = observer(() => {
     const {authorizationStore: {GetToken,SetToken}} = useStores();
     const navigate = useNavigate();
     const goToProfile = () => navigate('/profile');
+
 
     const SignupSchema = Yup.object().shape({
         phone: Yup.string()
@@ -37,6 +40,11 @@ export const LoginModal = observer(() => {
 
     const closeModal = () => {
       removeModal();
+    }
+
+    const openModal = (modal: any) => {
+        removeModal()
+        addModal(modal);
     }
 
     return(
@@ -80,7 +88,7 @@ export const LoginModal = observer(() => {
                         <button>
                             Войти с помощью смс
                         </button>
-                        <button>
+                        <button onClick={() => openModal(RegModal)}>
                             Регистрация
                         </button>
                     </div>
