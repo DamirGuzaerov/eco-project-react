@@ -6,7 +6,7 @@ import {ModalTemplate} from "../modals/modalTemplate";
 import {LoginModal} from "../modals/loginModal/loginModal";
 import {useStores} from "../../utils/hooks/use-stores";
 import {observer} from "mobx-react";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const Header = observer(() => {
 
@@ -17,7 +17,6 @@ const Header = observer(() => {
 
 
     const openModal = (modal: any) => {
-        alert(GetToken());
         if (GetToken() !== "") goToProfile();
         removeModal();
         addModal(modal);
@@ -31,9 +30,11 @@ const Header = observer(() => {
                             <object data={logo} type=""/>
                         </div>
                         <ul className={styles.navList}>
-                            <li className={styles.navLink}>
-                                Главная
-                            </li>
+                            <Link to={"/"}>
+                                <li className={styles.navLink}>
+                                    Главная
+                                </li>
+                            </Link>
                             <li className={styles.navLink}>
                                 Пункты сбора
                             </li>
