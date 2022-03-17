@@ -65,11 +65,11 @@ export const LoginModal = observer(() => {
                         {({ errors, touched}) =>
                             (<Form >
                                 <div className={defaultModalStyles.modal__form_container}>
-                                    <Field name="phone" placeholder={'Телефон'} style={getStyles(errors, 'phone')}/>
+                                    <Field name="phone" placeholder={'Телефон'} style={getStyles(errors, "phone")}/>
                                     {touched.phone && errors.phone ? (
                                         <p className={defaultModalStyles.error_message}>{errors.phone}</p>
                                     ) : null}
-                                    <Field name="password" placeholder={'Пароль'} type={'password'} style={getStyles(errors, 'password')}/>
+                                    <Field name="password" placeholder={'Пароль'} type={'password'} style={getStyles(errors, "password")}/>
                                     {touched.password && errors.password ? (
                                         <p className={defaultModalStyles.error_message}>{errors.password}</p>
                                     ) : null}

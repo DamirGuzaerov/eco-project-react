@@ -4,6 +4,8 @@ import styles from "./main.module.sass";
 import NavCard from "../../components/navCard/navigationCard";
 import market from "../../assets/images/market.svg";
 import map from "../../assets/images/map.svg";
+import ProductCard from "../../components/ui/productCard/productCard";
+import imgUrl from "../../assets/images/img_1.png"
 function Main() {
     return (
             <main className={styles.mainCards__wrapper}>
@@ -20,6 +22,13 @@ function Main() {
                         />
                     </div>
                 </div>
+                <ProductCard
+                    imgUrl={imgUrl}
+                    brand={'Nike'}
+                    productName={"Nike Air Max 2021"}
+                    productType={"Мужская обувь"}
+                    cost = {'1000'}
+                />
             </main>
     );
 }
