@@ -4,8 +4,9 @@ import {Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {useStores} from "../../../utils/hooks/use-stores";
 import {observer} from "mobx-react";
-import {SubmitCodeModal} from "../codeModal/сodeModal";
+import {CodeModal} from "../codeModal/сodeModal";
 import {LoginModal} from "../loginModal/loginModal";
+import {PartnersLoginModal} from "../partnersLoginModal/partnersLoginModal";
 
 export const RegModal = observer(() => {
     const {modalStore: {addModal, removeModal}, phoneStore: {addNumber}} = useStores();
@@ -35,7 +36,7 @@ export const RegModal = observer(() => {
               <Formik initialValues={{
                   phone: '',
               }}
-                       onSubmit={(values) => { console.log(values.phone, typeof values.phone);submitNumber(SubmitCodeModal, values.phone)}}
+                       onSubmit={(values) => { console.log(values.phone, typeof values.phone);submitNumber(CodeModal, values.phone)}}
                        validationSchema={SignupSchema}
               >
                   {({ errors, touched}) =>
@@ -57,7 +58,7 @@ export const RegModal = observer(() => {
                       Я уже зарегистрировался(-ась)
                   </button>
               </div>
-              <button className={defaultModalStyles.modal__enterForPartnersButton}>
+              <button className={defaultModalStyles.modal__enterForPartnersButton} onClick={() => openModal(PartnersLoginModal)}>
                   Вход для партнёров
               </button>
           </div>

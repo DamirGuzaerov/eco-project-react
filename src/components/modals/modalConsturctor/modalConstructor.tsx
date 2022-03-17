@@ -1,6 +1,7 @@
 import {observer} from "mobx-react";
 import {useStores} from "../../../utils/hooks/use-stores";
 import {cloneElement} from "react";
+import styles from "../modal.module.sass"
 
 export const ModalConstructor = observer(() => {
     const {
@@ -9,7 +10,7 @@ export const ModalConstructor = observer(() => {
 
     if (CurrentModal) {
         // @ts-ignore
-        return cloneElement(<CurrentModal/>)
+        return <div className={styles.overlay}>{cloneElement(<CurrentModal/>)}</div>
     }
     return null;
 });

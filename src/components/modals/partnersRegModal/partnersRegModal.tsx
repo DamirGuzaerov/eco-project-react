@@ -7,10 +7,10 @@ import {ModalTemplate} from "../modalTemplates/modalTemplate";
 import {useStores} from "../../../utils/hooks/use-stores";
 import {observer} from "mobx-react";
 import {RegModal} from "../regModal/regModal";
-import {PartnersRegModal} from "../partnersRegModal/partnersRegModal";
+import {PartnersLoginModal} from "../partnersLoginModal/partnersLoginModal";
 
 
-export const LoginModal = observer(() => {
+export const PartnersRegModal = observer(() => {
     const {modalStore: {addModal, removeModal},
             authorizationStore: {GetToken,SetToken}} = useStores();
     const navigate = useNavigate();
@@ -18,25 +18,16 @@ export const LoginModal = observer(() => {
 
 
     const SignupSchema = Yup.object().shape({
-        phone: Yup.string()
+        email: Yup.string()
             .required("Введите номер телефона")
-            .matches(
-                /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/,
-                "Неправильный номер телефона"
-            ),
+            .email("Неправильынй формат"),
+        partnerName:Yup.string()
+            .required("Введите наименование организации")
+            .min(4,"Минимальное количество знаков - 4"),
         password: Yup.string()
             .required("Введите пароль")
             .min(4, "Минимальное количество знаков - 4"),
     });
-
-    const onSubmit = (phone:string,password:string)=>{
-        SetToken(phone,password);
-        const token = GetToken();
-        if(token !== "") {
-            removeModal();
-            goToProfile();
-        }
-    }
 
     const openModal = (modal: any) => {
         removeModal()
@@ -46,41 +37,42 @@ export const LoginModal = observer(() => {
     return(
         <ModalTemplate title={'Вход'}>
                 <div className={defaultModalStyles.modal_content}>
-
                     <Formik  initialValues={{
-                        phone: '',
+                        partnerName:'',
+                        email: '',
                         password: '',
                     }}
                              validationSchema={SignupSchema}
-                             onSubmit={values => onSubmit(values.phone,values.password)}
+                             onSubmit={values => alert(values)}
                     >
                         {({ errors, touched}) =>
                             (<Form >
                                 <div className={defaultModalStyles.modal__form_container}>
-                                    <Field name="phone" placeholder={'Телефон'}/>
-                                    {touched.phone && errors.phone ? (
-                                        <p className={defaultModalStyles.error_message}>{errors.phone}</p>
+                                    <Field name="partnerName" placeholder={'Наименование организации'}/>
+                                    {touched.partnerName && errors.partnerName ? (
+                                        <p className={defaultModalStyles.error_message}>{errors.partnerName}</p>
+                                    ) : null}
+                                    <Field name="email" placeholder={'Email'}/>
+                                    {touched.email && errors.email? (
+                                        <p className={defaultModalStyles.error_message}>{errors.email}</p>
                                     ) : null}
                                     <Field name="password" placeholder={'Пароль'} type={'password'}/>
                                     {touched.password && errors.password ? (
                                         <p className={defaultModalStyles.error_message}>{errors.password}</p>
                                     ) : null}
                                     <button type="submit" className={defaultModalStyles.modal__sendButton}>
-                                        <p>Войти</p>
+                                        <p>Получить код</p>
                                     </button>
                                 </div>
                             </Form>)}
                     </Formik>
 
                     <div className={defaultModalStyles.modal__underLinks}>
-                        <button onClick={() => openModal(RegModal)}>
-                            Войти с помощью смс
-                        </button>
-                        <button onClick={() => openModal(RegModal)}>
-                            Регистрация
+                        <button onClick={() => openModal(PartnersLoginModal)}>
+                            Я уже зарегестрировался(-ась)
                         </button>
                     </div>
-                    <button className={defaultModalStyles.modal__enterForPartnersButton} onClick={()=>openModal(PartnersRegModal)}>
+                    <button className={defaultModalStyles.modal__enterForPartnersButton} onClick={() => openModal(PartnersLoginModal)}>
                         Вход для партнёров
                     </button>
                 </div>

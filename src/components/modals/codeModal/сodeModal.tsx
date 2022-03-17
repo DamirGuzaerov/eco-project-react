@@ -11,7 +11,7 @@ import {RegModal} from "../regModal/regModal";
 export interface props {
     phone: string
 }
-export const SubmitCodeModal: FC<props> = observer((props) => {
+export const CodeModal = observer( ()=> {
     const {phoneStore: {getNumber},
             modalStore: {removeModal, addModal}} = useStores();
     const number = getNumber();
@@ -54,7 +54,7 @@ export const SubmitCodeModal: FC<props> = observer((props) => {
                                     <p className={defaultModalStyles.error_message}>{errors.code}</p>
                                 ) : null}
                                 <button type="submit" className={defaultModalStyles.modal__sendButton}>
-                                    <p>Получить код</p>
+                                    <p>Отправить</p>
                                 </button>
                             </div>
                         </Form>)}
