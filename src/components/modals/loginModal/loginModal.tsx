@@ -37,11 +37,6 @@ export const LoginModal = observer(() => {
         }
     }
 
-    const changeModal = () => {
-      removeModal();
-      addModal(RegModal);
-    }
-
     const openModal = (modal: any) => {
         removeModal()
         addModal(modal);
@@ -77,10 +72,10 @@ export const LoginModal = observer(() => {
                     </Formik>
 
                     <div className={defaultModalStyles.modal__underLinks}>
-                        <button onClick={changeModal}>
+                        <button onClick={() => openModal(RegModal)}>
                             Войти с помощью смс
                         </button>
-                        <button onClick={() => openModal(RegModal)}>
+                        <button>
                             Регистрация
                         </button>
                     </div>

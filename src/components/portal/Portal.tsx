@@ -6,7 +6,7 @@ interface Portal {
     role: string,
     children: any
 }
-export const Portal = ({className = 'portal-root', elem = 'div', role, children}: Portal) => {
+export const Portal = ({className = 'portal-root', elem = 'div', children}: Portal) => {
     const [container] = useState(document.createElement(elem));
 
     container.classList.add(className);

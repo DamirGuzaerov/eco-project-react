@@ -2,8 +2,13 @@ import {ModalTemplate} from "../modalTemplates/modalTemplate";
 import defaultModalStyles from "../modal.module.sass";
 import {Field, Form, Formik} from "formik";
 import * as Yup from "yup";
+import {useStores} from "../../../utils/hooks/use-stores";
+import {observer} from "mobx-react";
+import {SubmitCodeModal} from "../codeModal/сodeModal";
+import {LoginModal} from "../loginModal/loginModal";
 
-export const RegModal = () => {
+export const RegModal = observer(() => {
+    const {modalStore: {addModal, removeModal}, phoneStore: {addNumber}} = useStores();
     const SignupSchema = Yup.object().shape({
         phone: Yup.string()
             .required("Введите номер телефона")
@@ -13,19 +18,28 @@ export const RegModal = () => {
             )
     });
 
+    const openModal = (modal: any) => {
+        removeModal()
+        addModal(modal);
+    }
+
+    const submitNumber = (model: any, phoneNumber: string) => {
+        openModal(model);
+        addNumber(phoneNumber);
+    }
+
     return(
       <ModalTemplate title={'Вход или регистрация'}>
           <div className={defaultModalStyles.modal_content}>
 
-              <Formik  initialValues={{
+              <Formik initialValues={{
                   phone: '',
               }}
-                       onSubmit={values => {
-                           console.log(values)}}
+                       onSubmit={(values) => { console.log(values.phone, typeof values.phone);submitNumber(SubmitCodeModal, values.phone)}}
                        validationSchema={SignupSchema}
               >
                   {({ errors, touched}) =>
-                      (<Form >
+                      (<Form>
                           <div className={defaultModalStyles.modal__form_container}>
                               <Field name="phone" placeholder={'Телефон'}/>
                               {touched.phone && errors.phone ? (
@@ -38,7 +52,7 @@ export const RegModal = () => {
                       </Form>)}
               </Formik>
 
-              <div className={defaultModalStyles.modal__underLinks}>
+              <div className={defaultModalStyles.modal__underLinks} onClick={() => openModal(LoginModal)}>
                   <button>
                       Я уже зарегистрировался(-ась)
                   </button>
@@ -49,4 +63,4 @@ export const RegModal = () => {
           </div>
       </ModalTemplate>
     );
-}
+});
