@@ -1,6 +1,6 @@
 import {ModalTemplate} from "../modalTemplates/modalTemplate";
 import defaultModalStyles from "../modal.module.sass";
-import {Field, Form, Formik} from "formik";
+import {Field, Form, Formik, getIn} from "formik";
 import * as Yup from "yup";
 import {FC} from "react";
 import {observer} from "mobx-react";
@@ -8,10 +8,8 @@ import {useStores} from "../../../utils/hooks/use-stores";
 import styles from './codeModal.module.sass';
 import {RegModal} from "../regModal/regModal";
 
-export interface props {
-    phone: string
-}
-export const CodeModal = observer( ()=> {
+export const CodeModal = observer( () => {
+
     const {phoneStore: {getNumber},
             modalStore: {removeModal, addModal}} = useStores();
     const number = getNumber();
@@ -23,6 +21,14 @@ export const CodeModal = observer( ()=> {
                 "Введите действительный код"
             )
     });
+
+    function getStyles(errors: any, fieldName: any) {
+        if (getIn(errors, fieldName)) {
+            return {
+                border: '1px solid red'
+            }
+        }
+    }
 
     const openModal = (modal: any) => {
         removeModal()
@@ -49,7 +55,7 @@ export const CodeModal = observer( ()=> {
                                     <p className={styles.codeModal__phone_number}>{number}</p>
                                 </div>
 
-                                <Field name="code" placeholder={'Код'}/>
+                                <Field name="code" placeholder={'Код'} style={getStyles(errors, 'code')}/>
                                 {touched.code && errors.code ? (
                                     <p className={defaultModalStyles.error_message}>{errors.code}</p>
                                 ) : null}

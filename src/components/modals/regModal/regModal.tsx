@@ -1,6 +1,6 @@
 import {ModalTemplate} from "../modalTemplates/modalTemplate";
 import defaultModalStyles from "../modal.module.sass";
-import {Field, Form, Formik} from "formik";
+import {Field, Form, Formik, getIn} from "formik";
 import * as Yup from "yup";
 import {useStores} from "../../../utils/hooks/use-stores";
 import {observer} from "mobx-react";
@@ -29,6 +29,14 @@ export const RegModal = observer(() => {
         addNumber(phoneNumber);
     }
 
+    function getStyles(errors: any, fieldName: any) {
+        if (getIn(errors, fieldName)) {
+            return {
+                border: '1px solid red'
+            }
+        }
+    }
+
     return(
       <ModalTemplate title={'Вход или регистрация'}>
           <div className={defaultModalStyles.modal_content}>
@@ -42,7 +50,7 @@ export const RegModal = observer(() => {
                   {({ errors, touched}) =>
                       (<Form>
                           <div className={defaultModalStyles.modal__form_container}>
-                              <Field name="phone" placeholder={'Телефон'}/>
+                              <Field name="phone" placeholder={'Телефон'} style={getStyles(errors, 'phone')}/>
                               {touched.phone && errors.phone ? (
                                   <p className={defaultModalStyles.error_message}>{errors.phone}</p>
                               ) : null}
