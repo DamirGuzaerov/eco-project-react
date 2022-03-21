@@ -9,8 +9,10 @@ import {Link, useNavigate} from "react-router-dom";
 
 const Header = observer(() => {
 
-    const { modalStore: {addModal, removeModal},
-    authorizationStore: {GetToken}} = useStores();
+    const {
+        modalStore: {addModal, removeModal},
+        authorizationStore: {GetToken}
+    } = useStores();
     const navigate = useNavigate();
     const goToProfile = () => navigate('/profile');
 
@@ -25,45 +27,51 @@ const Header = observer(() => {
     }
 
     return (
-            <div className={styles.header__wrapper}>
-                <header className={styles.header}>
-                    <nav className={styles.navPanel}>
-                        <div className={styles.header__logo}>
-                            <object data={logo} type=""/>
-                        </div>
-                        <ul className={styles.navList}>
-                                <li className={styles.navLink}>
-                                    <Link to={"/"}>
-                                    Главная
-                                    </Link>
-                                </li>
-                            <li className={styles.navLink}>
-                                Пункты сбора
-                            </li>
-                            <li className={styles.navLink}>
-                                ЭкоМаркет
-                            </li>
-                            <li className={styles.navLink}>
-                                О сервисе
-                            </li>
-                        </ul>
-                    </nav>
+        <div className={styles.header__wrapper}>
+            <header className={styles.header}>
+                <nav className={styles.navPanel}>
+                    <div className={styles.header__logo}>
+                        <object data={logo} type=""/>
+                    </div>
                     <ul className={styles.navList}>
                         <li className={styles.navLink}>
-                            <div className={styles.headerIcon}>
-                                <Icon name={"mapPointer"} width={24} height={24}/>
-                            </div>
-                                Казань
+                            <Link to={"/"}>
+                                Главная
+                            </Link>
                         </li>
-                        <li className={styles.navLink} onClick={() => openModal(LoginModal)}>
-                                <div className={styles.headerIcon}>
-                                    <Icon name={"login"} width={24} height={24}/>
-                                </div>
-                                Войти
+                        <li className={styles.navLink}>
+                            <Link to={"/collectionPoints"}>
+                                Пункты сбора
+                            </Link>
+                        </li>
+                        <li className={styles.navLink}>
+                            <Link to={"/ecoMarket"}>
+                                ЭкоМаркет
+                            </Link>
+                        </li>
+                        <li className={styles.navLink}>
+                            <Link to={"/about"}>
+                                О сервисе
+                            </Link>
                         </li>
                     </ul>
-                </header>
-            </div>
+                </nav>
+                <ul className={styles.navList}>
+                    <li className={styles.navLink}>
+                        <div className={styles.headerIcon}>
+                            <Icon name={"mapPointer"} width={24} height={24}/>
+                        </div>
+                        Казань
+                    </li>
+                    <li className={styles.navLink} onClick={() => openModal(LoginModal)}>
+                        <div className={styles.headerIcon}>
+                            <Icon name={"login"} width={24} height={24}/>
+                        </div>
+                        Войти
+                    </li>
+                </ul>
+            </header>
+        </div>
     );
 });
 

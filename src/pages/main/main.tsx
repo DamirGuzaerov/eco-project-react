@@ -22,13 +22,7 @@ function Main() {
                         />
                     </div>
                 </div>
-                <ProductCard
-                    imgUrl={imgUrl}
-                    brand={'Nike'}
-                    productName={"Nike Air Max 2021"}
-                    productType={"Мужская обувь"}
-                    cost = {'1000'}
-                />
+
             </main>
     );
 }
