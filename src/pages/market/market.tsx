@@ -4,6 +4,7 @@ import balanceLogo from '../../assets/images/img_2.png'
 import ProductCard from "../../components/ui/productCard/productCard";
 import imgUrl from "../../assets/images/img_1.png";
 import React from "react";
+import {Filter} from "../../components/filters/filter";
 
 const Market = () => {
     return (
@@ -17,7 +18,10 @@ const Market = () => {
                 </div>
             </div>
             <div className={styles.mainContentWrapper}>
-                <div className={styles.temp}></div>
+                <div className={styles.temp}>
+                    <Filter/>
+                    <button className={styles.removeFiltersBtn}>Сбросить фильтры</button>
+                </div>
                 <div className={styles.productsTable}>
                     <div className={styles.productsTableRow}>
                         <div className={styles.balanceCard}>

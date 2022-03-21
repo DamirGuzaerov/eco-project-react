@@ -1,0 +1,55 @@
+@use 'src/assets/globalStyles/globalStyles' as gs
+input[type="checkbox"]
+  clip: rect(0 0 0 0)
+  clip-path: inset(50%)
+  height: 1px
+  overflow: hidden
+  position: absolute
+  white-space: nowrap
+  width: 1px
+
+.checkboxWithName
+  margin-top: 12px
+  display: flex
+  flex-direction: row
+  align-items: center
+
+  p
+    margin: 0 0 0 9px
+
+.checkbox
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 14px
+  width: 14px
+  background: none
+  border-radius: 4px
+  box-sizing: content-box
+  border: 2px solid rgba(0, 11, 38, 0.4)
+
+
+
+.checkbox_active
+  border: none
+  height: 18px
+  width: 18px
+  background: #07C88E
+
+
+.checkbox--disabled
+
+.checkbox_wrapper
+  display: flex
+
+.default_name
+  @include gs.modal-default-font-settings
+  color: rgba(0, 11, 38, 0.72)
+  font-weight: 400
+
+
+.active_name
+  font-weight: 500
+
+
+
