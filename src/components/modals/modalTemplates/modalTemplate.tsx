@@ -6,7 +6,21 @@ import {observer} from "mobx-react";
 import {useStores} from "../../../utils/hooks/use-stores";
 import defaultModalStyles from "../modal.module.sass";
 import Icon from "../../ui/icon/icon";
+import {FormikErrors, FormikTouched, FormikValues, getIn} from "formik";
 
+function getStyles(errors: any, fieldName: any) {
+    if (getIn(errors, fieldName)) {
+        return {
+            border: '1px solid red'
+        }
+    }
+}
+
+export  function getErrorStyle(errors: FormikErrors<FormikValues>,
+                               touched: FormikTouched<FormikValues[string][number]>[] | boolean | FormikTouched<any> | undefined,
+                               fieldName: string) {
+    if (touched) return getStyles(errors, fieldName)
+}
 
 export interface IModal {
     children: any

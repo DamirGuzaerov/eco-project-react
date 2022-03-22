@@ -1,9 +1,9 @@
 import defaultModalStyles from './../modal.module.sass';
 import Icon from "../../ui/icon/icon";
 import {Link, useNavigate} from "react-router-dom";
-import {Formik, Form, Field, getIn} from 'formik';
+import {Formik, Form, Field, getIn, FormikErrors, FormikValues, FormikTouched} from 'formik';
 import * as Yup from 'yup';
-import {ModalTemplate} from "../modalTemplates/modalTemplate";
+import {getErrorStyle, ModalTemplate} from "../modalTemplates/modalTemplate";
 import {useStores} from "../../../utils/hooks/use-stores";
 import {observer} from "mobx-react";
 import {RegModal} from "../regModal/regModal";
@@ -30,14 +30,6 @@ export const PartnersLoginModal = observer(() => {
         addModal(modal);
     }
 
-    function getStyles(errors: any, fieldName: any) {
-        if (getIn(errors, fieldName)) {
-            return {
-                border: '1px solid red'
-            }
-        }
-    }
-
     return(
         <ModalTemplate title={'Вход'}>
                 <div className={defaultModalStyles.modal_content}>
@@ -51,11 +43,11 @@ export const PartnersLoginModal = observer(() => {
                         {({ errors, touched}) =>
                             (<Form >
                                 <div className={defaultModalStyles.modal__form_container}>
-                                    <Field name="email" placeholder={'Email'} style={getStyles(errors, 'email')}/>
+                                    <Field name="email" placeholder={'Email'} style={getErrorStyle(errors,touched.email, 'email')}/>
                                     {touched.email && errors.email? (
                                         <p className={defaultModalStyles.error_message}>{errors.email}</p>
                                     ) : null}
-                                    <Field name="password" placeholder={'Пароль'} type={'password'} style={getStyles(errors, 'password')}/>
+                                    <Field name="password" placeholder={'Пароль'} type={'password'} style={getErrorStyle(errors,touched.password, 'password')}/>
                                     {touched.password && errors.password ? (
                                         <p className={defaultModalStyles.error_message}>{errors.password}</p>
                                     ) : null}
