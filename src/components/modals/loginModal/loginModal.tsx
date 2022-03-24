@@ -1,9 +1,9 @@
 import defaultModalStyles from './../modal.module.sass';
 import Icon from "../../ui/icon/icon";
 import {Link, useNavigate} from "react-router-dom";
-import {Formik, Form, Field, getIn} from 'formik';
+import {Formik, Form, Field, getIn, FormikValues, FormikErrors, FormikTouched} from 'formik';
 import * as Yup from 'yup';
-import {ModalTemplate} from "../modalTemplates/modalTemplate";
+import {getErrorStyle, ModalTemplate} from "../modalTemplates/modalTemplate";
 import {useStores} from "../../../utils/hooks/use-stores";
 import {observer} from "mobx-react";
 import {RegModal} from "../regModal/regModal";
@@ -15,7 +15,6 @@ export const LoginModal = observer(() => {
             authorizationStore: {GetToken,SetToken}} = useStores();
     const navigate = useNavigate();
     const goToProfile = () => navigate('/profile');
-
 
     const SignupSchema = Yup.object().shape({
         phone: Yup.string()
@@ -43,14 +42,6 @@ export const LoginModal = observer(() => {
         addModal(modal);
     }
 
-    function getStyles(errors: any, fieldName: any) {
-        if (getIn(errors, fieldName)) {
-            return {
-                border: '1px solid red'
-            }
-        }
-    }
-
     return(
         <ModalTemplate title={'Вход'}>
                 <div className={defaultModalStyles.modal_content}>
@@ -65,11 +56,11 @@ export const LoginModal = observer(() => {
                         {({ errors, touched}) =>
                             (<Form >
                                 <div className={defaultModalStyles.modal__form_container}>
-                                    <Field name="phone" placeholder={'Телефон'} style={getStyles(errors, "phone")}/>
+                                    <Field name="phone" placeholder={'Телефон'} style={getErrorStyle(errors,touched.phone,"phone")}/>
                                     {touched.phone && errors.phone ? (
                                         <p className={defaultModalStyles.error_message}>{errors.phone}</p>
                                     ) : null}
-                                    <Field name="password" placeholder={'Пароль'} type={'password'} style={getStyles(errors, "password")}/>
+                                    <Field name="password" placeholder={'Пароль'} type={'password'} style={getErrorStyle(errors,touched.password, "password")}/>
                                     {touched.password && errors.password ? (
                                         <p className={defaultModalStyles.error_message}>{errors.password}</p>
                                     ) : null}
