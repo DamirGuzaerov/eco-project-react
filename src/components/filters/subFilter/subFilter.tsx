@@ -12,7 +12,7 @@ export const SubFilter: FC<props> = ({name, buttonsName}) => {
         <div className={styles.subfilter_container}>
             <h3>{name}</h3>
             {buttonsName.map(e => {
-                return(<FilterCheckbox key={e} name={e}/>);
+                return(<FilterCheckbox key={e} name={e} onChange={console.log}/>);
             })}
         </div>
     )

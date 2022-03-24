@@ -6,7 +6,7 @@ export const Filter = () => {
       <div className={styles.filter__container}>
           <SubFilter name={'Пол'} buttonsName={['Мужской', 'Женский']}/>
           <SubFilter name={'Тип товара'} buttonsName={['Выбрать все', 'Обувь', 'Одежда', 'Аксессуары']}/>
-          <SubFilter name={'Брэнд'} buttonsName={['Выбрать все', 'Nik3', 'Abibas', 'Rebok', 'M$H', 'Самарский трикотаж', 'Салаватский трикотаж']}/>
+          <SubFilter name={'Брэнд'} buttonsName={['Выбрать все', 'Nik3', 'Abibas', 'Rebok', 'M$H', 'Самарский трикотаж']}/>
       </div>
     );
 }
