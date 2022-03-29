@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styles from "./header.module.sass";
 import Icon from "../ui/icon/icon";
 import logo from "../../assets/images/logo.svg"
@@ -6,22 +6,52 @@ import {LoginModal} from "../modals/loginModal/loginModal";
 import {useStores} from "../../utils/hooks/use-stores";
 import {observer} from "mobx-react";
 import {Link, useNavigate} from "react-router-dom";
+import ecocoin from '../../assets/images/ecoCoin.svg';
 
 const Header = observer(() => {
-
     const {
         modalStore: {addModal, removeModal},
-        authorizationStore: {GetToken}
+        authorizationStore: {getIsAuth, getUserInfo}
     } = useStores();
     const navigate = useNavigate();
     const goToProfile = () => navigate('/profile');
 
+    useEffect(() => {
+
+    }, [getIsAuth()])
+
+    const nonAuthDisplay = () => {
+        return (
+            <li className={styles.navLink} onClick={() => openModal(LoginModal)}>
+                <div className={styles.headerIcon}>
+                    <Icon name={"login"} width={24} height={24}/>
+                </div>
+                Войти
+            </li>
+        )
+    }
+
+    const authDisplay = () => {
+        return (
+            <>
+                <li className={`${styles.navLink} ${styles.header_balance}`}>
+                    <div className={styles.headerIcon}>
+                        <img src={ecocoin} width={24} height={24}/>
+                    </div>
+                    <p>{getUserInfo().balance}</p>
+                </li>
+
+                <Link to={'/profile'} className={styles.navLink}>
+                    <div className={styles.headerIcon}>
+                        <img src={getUserInfo().photo_url} className={styles.photo_header}/>
+                    </div>
+                    <p>{getUserInfo().username}</p>
+                </Link>
+            </>
+        )
+    }
 
     const openModal = (modal: any) => {
-        if (GetToken() != "") {
-            goToProfile();
-            return;
-        }
         removeModal();
         addModal(modal);
     }
@@ -63,12 +93,7 @@ const Header = observer(() => {
                         </div>
                         Казань
                     </li>
-                    <li className={styles.navLink} onClick={() => openModal(LoginModal)}>
-                        <div className={styles.headerIcon}>
-                            <Icon name={"login"} width={24} height={24}/>
-                        </div>
-                        Войти
-                    </li>
+                    {getIsAuth() ? authDisplay() : nonAuthDisplay()}
                 </ul>
             </header>
         </div>

@@ -11,8 +11,7 @@ import {PartnersLoginModal} from "../partnersLoginModal/partnersLoginModal";
 
 
 export const PartnersRegModal = observer(() => {
-    const {modalStore: {addModal, removeModal},
-            authorizationStore: {GetToken,SetToken}} = useStores();
+    const {modalStore: {addModal, removeModal}} = useStores();
     const navigate = useNavigate();
     const goToProfile = () => navigate('/profile');
 

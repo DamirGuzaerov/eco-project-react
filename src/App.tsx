@@ -3,11 +3,10 @@ import './App.css';
 import Main from "./pages/main/main";
 import {Route, Routes} from "react-router-dom";
 import {NonAuthLayout} from "./components/layouts/nonAuthLayout";
-import Profile from "./pages/profile/profile";
+import {Profile} from "./pages/profile/profile";
 import Market from "./pages/market/market";
 import CollectionPoints from "./pages/collectionPoints/collectionPoints";
 import About from "./pages/about/about";
-
 
 function App() {
   return (

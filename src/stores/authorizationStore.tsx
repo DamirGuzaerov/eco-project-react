@@ -2,48 +2,48 @@ import {MainStore} from "./mainStore";
 import {makeObservable, observable} from "mobx";
 
 interface userProps{
-    phone: string,
-    password: string,
-    patronymic: string,
-    firstName: string,
-    mail: string,
     token: string,
+    id?: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    username: string,
+    photo_url?: string,
+    firstname?: string,
+    lastname?: string,
+    email: string,
+    role?: object,
+    balance? : number
 }
-const usersAuthInfoMock:userProps[] = [
-    {
-        phone: "999999",
-        password: "qwerty555",
-        patronymic: "Петрович",
-        firstName: "Алексей",
-        mail: "ivanov@gmail.com",
-        token: "",
-    }
-]
+
 export default class authorizationStore {
-    token: string = "";
-    usersMock: userProps[];
+    user: userProps;
 
     constructor(mainStore: MainStore) {
+        this.user = {
+            username: '',
+            email: '',
+            token: '',
+            balance: 0
+        }
         makeObservable(this, {
-            token: observable,
-            usersMock: observable
+            user: observable
         })
-        this.usersMock = usersAuthInfoMock;
     }
 
-    public SetToken = (phone: string,password: string) => {
-        if(this.usersMock.find(user => user.phone === phone && user.password === password) != null)
-            this.token = this.GenerateNewToken().toString();
+    public setUser = (user: userProps) => {
+        const {token, username, email} = user;
+        this.user.token = token;
+        this.user.username = username;
+        this.user.email = email;
     }
 
-    public GetToken = () => {
-        return this.token;
+    public getUserToken = () => {
+        return this.user.token;
     }
 
-    public GetUserByToken = (token: string) => {
-        return this.usersMock.find(user => user.token === token)
+    public getIsAuth = () => {
+        return this.user.token ? true : false;
     }
-    private GenerateNewToken = () => {
-        return Math.random();
+
+    public getUserInfo = () => {
+        return this.user;
     }
 }

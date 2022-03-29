@@ -5,13 +5,15 @@ import Icon from "../icon/icon";
 
 interface name {
     name: string,
-    onChange: Function
+    onChange: Function,
+    flag: boolean
 }
-export const FilterCheckbox:FC<name> = ({name, onChange}) => {
-    const [isChecked, setIsChecked] = useState(false);
+export const FilterCheckbox:FC<name> = ({name, onChange, flag}) => {
+    const [isChecked, setIsChecked] = useState(flag);
 
     const onCheck = () => {
         setIsChecked(!isChecked);
+        console.log(isChecked);
     }
 
     useEffect(() => {
