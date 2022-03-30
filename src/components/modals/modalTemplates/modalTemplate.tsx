@@ -38,7 +38,7 @@ export const ModalTemplate:FC<IModal> = observer(({children, title}: IModal) => 
     }
 
     return (
-        <Portal elem={'elem'} role={'loginModal'} className={'portal-root'}>
+        <Portal elem={'elem'} role={'loginModal'}>
             <div className={styles.modalOverlay} ref={ref}>
                 <div className={defaultModalStyles.modal__container}>
                     <div className={defaultModalStyles.modal__firstrow}>

@@ -87,7 +87,7 @@ const Header = observer(() => {
                     </ul>
                 </nav>
                 <ul className={styles.navList}>
-                    <li className={styles.navLink}>
+                    <li className={`${styles.navLink_city} ${styles.navLink}`}>
                         <div className={styles.headerIcon}>
                             <Icon name={"mapPointer"} width={24} height={24}/>
                         </div>

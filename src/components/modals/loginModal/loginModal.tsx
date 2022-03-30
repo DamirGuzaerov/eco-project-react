@@ -1,6 +1,6 @@
 import defaultModalStyles from './../modal.module.sass';
 import {useNavigate} from "react-router-dom";
-import {Formik, Form, Field, getIn, FormikValues, FormikErrors, FormikTouched} from 'formik';
+import {Formik, Form, Field, getIn, FormikValues, FormikErrors, FormikTouched, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import {getErrorStyle, ModalTemplate} from "../modalTemplates/modalTemplate";
 import {useStores} from "../../../utils/hooks/use-stores";
@@ -19,16 +19,17 @@ export const LoginModal = observer(() => {
         authorizationStore: {setUser, getUserToken, getIsAuth}
     } = useStores();
     const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
     const navigate = useNavigate();
     const goToProfile = () => navigate('/profile');
 
     const SignupSchema = Yup.object().shape({
         phone: Yup.string()
             .required("Введите номер телефона")
-            // .matches(
-            //     /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/,
-            //     "Неправильный номер телефона"
-            // ),
+        // .matches(
+        //     /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/,
+        //     "Неправильный номер телефона"
+        // ),
         ,
         password: Yup.string()
             .required("Введите пароль")
@@ -36,7 +37,7 @@ export const LoginModal = observer(() => {
     });
 
     useEffect(() => {
-        if(getIsAuth()) {
+        if (getIsAuth()) {
             goToProfile();
         }
     }, [])
@@ -52,8 +53,8 @@ export const LoginModal = observer(() => {
             removeModal();
             goToProfile();
         }).catch((error) => {
-            console.log('something went wrong', error);
             setIsLoading(false);
+            setIsError(true);
         })
     }
 
@@ -88,7 +89,8 @@ export const LoginModal = observer(() => {
                                 ) : null}
                                 {!isLoading ? (<button type="submit" className={defaultModalStyles.modal__sendButton}>
                                     <p>Войти</p>
-                                </button>): <Loader/>}
+                                </button>) : <Loader/>}
+                                {isError ? <p className={defaultModalStyles.error_message}>Неправильный логин или пароль</p> : null}
                             </div>
                         </Form>)}
                 </Formik>
