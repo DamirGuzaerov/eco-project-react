@@ -9,10 +9,16 @@ import {PartnersLoginModal} from "../partnersLoginModal/partnersLoginModal";
 import axios from "axios";
 import {useState} from "react";
 import {Loader} from "../../ui/loader/loader";
+import {useNavigate} from "react-router-dom";
 
 export const RegModal = observer(() => {
-    const {modalStore: {addModal, removeModal}} = useStores();
+    const {
+        modalStore: {addModal, removeModal},
+        authorizationStore: {setUser}
+    } = useStores();
     const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
+    const goToProfile = () => navigate('/profile');
     const SignupSchema = Yup.object().shape({
         phone: Yup.string()
             .required("Введите номер телефона")
@@ -44,14 +50,30 @@ export const RegModal = observer(() => {
         setIsLoading(true);
         axios.post('/account',
             {
+                phone_number: values.phone,
                 username: values.phone,
                 password: values.password,
                 role: 'ADMIN'
             }).then((r) => {
             console.log(r);
+            axios.post('/login', {
+                login: values.phone,
+                password: values.password
+            }).then((r) => {
+                console.log(r);
+                setUser({token: r.data.token, username: r.data.username, email: r.data.email})
+                setIsLoading(false);
+                removeModal();
+                goToProfile();
+            }).catch((error) => {
+                console.log(error);
+                setIsLoading(false);
+            })
             setIsLoading(false);
-            openModal(LoginModal);
-        }).catch(() => {
+            removeModal();
+            goToProfile();
+        }).catch((error) => {
+            console.log(error);
             setIsLoading(false);
         })
     }
