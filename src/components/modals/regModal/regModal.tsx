@@ -14,11 +14,11 @@ export const RegModal = observer(() => {
     const {modalStore: {addModal, removeModal}} = useStores();
     const [isLoading, setIsLoading] = useState(false);
     const SignupSchema = Yup.object().shape({
-        username: Yup.string()
-            .required('Введите логин')
-            .min(
-                5,
-                'Минимальное количество символов - 5'
+        phone: Yup.string()
+            .required("Введите номер телефона")
+            .matches(
+                /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/,
+                "Неправильный номер телефона"
             ),
         password: Yup.string()
             .required('Введите пароль')
@@ -44,7 +44,7 @@ export const RegModal = observer(() => {
         setIsLoading(true);
         axios.post('/account',
             {
-                username: values.username,
+                username: values.phone,
                 password: values.password,
                 role: 'ADMIN'
             }).then((r) => {
@@ -61,7 +61,7 @@ export const RegModal = observer(() => {
             <div className={defaultModalStyles.modal_content}>
 
                 <Formik initialValues={{
-                    username: '',
+                    phone: '',
                     password: '',
                     repeatPassword: ''
                 }}
@@ -73,20 +73,20 @@ export const RegModal = observer(() => {
                     {({errors, touched}) =>
                         (<Form autoComplete='off'>
                             <div className={defaultModalStyles.modal__form_container}>
-                                <Field name="username" placeholder={'Логин'}
-                                       style={getErrorStyle(errors, touched.username, 'username')}/>
-                                {touched.username && errors.username ? (
-                                    <p className={defaultModalStyles.error_message}>{errors.username}</p>
+                                <Field name="phone" placeholder={'Номер телефона'}
+                                       style={getErrorStyle(errors, touched.phone, 'phone')}/>
+                                {touched.phone && errors.phone ? (
+                                    <p className={defaultModalStyles.error_message}>{errors.phone}</p>
                                 ) : null}
 
                                 <Field type="password" name="password" placeholder={'Пароль'}
                                        style={getErrorStyle(errors, touched.password, 'password')}/>
                                 {touched.password && errors.password ? (
-                                    <p className={defaultModalStyles.error_message}>{errors.username}</p>
+                                    <p className={defaultModalStyles.error_message}>{errors.phone}</p>
                                 ) : null}
 
                                 <Field type="password" name="repeatPassword" placeholder={'Повторите пароль'}
-                                       style={getErrorStyle(errors, touched.username, 'username')}/>
+                                       style={getErrorStyle(errors, touched.phone, 'phone')}/>
                                 {touched.password && errors.password ? (
                                     <p className={defaultModalStyles.error_message}>{errors.repeatPassword}</p>
                                 ) : null}

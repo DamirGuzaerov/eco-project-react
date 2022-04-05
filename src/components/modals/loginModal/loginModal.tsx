@@ -26,10 +26,10 @@ export const LoginModal = observer(() => {
     const SignupSchema = Yup.object().shape({
         phone: Yup.string()
             .required("Введите номер телефона")
-        // .matches(
-        //     /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/,
-        //     "Неправильный номер телефона"
-        // ),
+        .matches(
+            /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/,
+            "Неправильный номер телефона"
+        )
         ,
         password: Yup.string()
             .required("Введите пароль")

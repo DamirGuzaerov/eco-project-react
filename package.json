@@ -20,6 +20,7 @@
     "react-leaflet": "^3.2.5",
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
+    "react-spring": "^9.4.4",
     "sass": "^1.49.7",
     "save-dev": "0.0.1-security",
     "svgstore": "^3.0.1",
