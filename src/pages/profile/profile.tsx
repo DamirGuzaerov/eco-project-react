@@ -3,27 +3,24 @@ import styles from './profile.module.sass';
 import UserCard from "../../components/ui/userCard/userCard";
 import HistoryCard from "../../components/ui/historyCard/historyCard";
 import {observer} from "mobx-react";
-import {useStores} from "../../utils/hooks/use-stores";
-import {useNavigate} from "react-router-dom";
-
 
 export const Profile = observer(() => {
-    const {
-        authorizationStore: {getIsAuth, getUserInfo}
-    } = useStores();
-
-    const navigate = useNavigate();
-
-
-    useEffect(() => {
-        if(!getIsAuth()) {
-            navigate('/')
-        }
-    })
     return (
         <div className={styles.profile_container}>
-            <UserCard/>
-            <HistoryCard/>
+            <h1 className={styles.profile_title}>Личный кабинет</h1>
+            <div className={styles.mainContentWrapper}>
+                <div className={styles.userCardWrapper}>
+                    <UserCard/>
+                </div>
+                <ul className={styles.infoCardsList}>
+                    <li className={styles.infoCardItem}>
+                        <HistoryCard/>
+                    </li>
+                    <li className={styles.infoCardItem}>
+                        <HistoryCard/>
+                    </li>
+                </ul>
+            </div>
         </div>
     );
 });

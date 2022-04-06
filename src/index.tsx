@@ -18,7 +18,7 @@ ReactDOM.render(
   <React.StrictMode>
       <Provider {...mainStore}>
           <BrowserRouter>
-            <App />
+            <App/>
               <ModalConstructor/>
           </BrowserRouter>
       </Provider>

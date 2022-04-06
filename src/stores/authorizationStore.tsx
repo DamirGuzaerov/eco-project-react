@@ -1,9 +1,10 @@
 import {MainStore} from "./mainStore";
 import {makeObservable, observable} from "mobx";
+import axios from "axios";
 
 interface userProps{
     token: string,
-    id?: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    id?: string,
     username: string,
     photo_url?: string,
     firstname?: string,
@@ -24,26 +25,45 @@ export default class authorizationStore {
             balance: 0
         }
         makeObservable(this, {
-            user: observable
+            user: observable,
         })
     }
 
     public setUser = (user: userProps) => {
-        const {token, username, email} = user;
-        this.user.token = token;
-        this.user.username = username;
-        this.user.email = email;
+        this.user = {...user};
+        console.log(this.user);
+        window.localStorage.setItem("userId",this.user.id!)
+        document.cookie = `auth_token=${this.user.token}`
     }
 
     public getUserToken = () => {
-        return this.user.token;
+        return getCookie("auth_token");
     }
 
     public getIsAuth = () => {
-        return this.user.token ? true : false;
+        return !!getCookie("auth_token");
     }
 
     public getUserInfo = () => {
+        if(this.user.id==null){
+            this.requestUserInfo();
+            this.user.id = window.localStorage.getItem("userId")!;
+        }
         return this.user;
     }
+
+    private requestUserInfo() {
+        axios.get(`/profile/${window.localStorage.getItem("userId")}`).then((r) => {
+            this.user = r.data
+        }).catch((e) => {
+            console.log(e);
+        })
+    }
+}
+
+function getCookie(name:string) {
+    let matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
 }
