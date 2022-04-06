@@ -37,8 +37,11 @@ export const RegModal = observer(() => {
             then: Yup.string().oneOf(
                 [Yup.ref("password")],
                 "Пароли должны совпадать"
-            )
-        })
+            ),
+        }),
+        username: Yup.string()
+            .required('Введите логин')
+            .min(5, 'Минимальное количество символов - 5')
     });
 
     const openModal = (modal: any) => {
@@ -51,7 +54,7 @@ export const RegModal = observer(() => {
         axios.post('/account',
             {
                 phone_number: values.phone,
-                username: values.phone,
+                username: values.username,
                 password: values.password,
                 role: 'ADMIN'
             }).then((r) => {
@@ -85,7 +88,8 @@ export const RegModal = observer(() => {
                 <Formik initialValues={{
                     phone: '',
                     password: '',
-                    repeatPassword: ''
+                    repeatPassword: '',
+                    username: ''
                 }}
                         onSubmit={(values) => {
                             sendRequest(values);
@@ -99,6 +103,12 @@ export const RegModal = observer(() => {
                                        style={getErrorStyle(errors, touched.phone, 'phone')}/>
                                 {touched.phone && errors.phone ? (
                                     <p className={defaultModalStyles.error_message}>{errors.phone}</p>
+                                ) : null}
+
+                                <Field name="username" placeholder={'Логин'}
+                                       style={getErrorStyle(errors, touched.username, 'username')}/>
+                                {touched.username && errors.username ? (
+                                    <p className={defaultModalStyles.error_message}>{errors.username}</p>
                                 ) : null}
 
                                 <Field type="password" name="password" placeholder={'Пароль'}
