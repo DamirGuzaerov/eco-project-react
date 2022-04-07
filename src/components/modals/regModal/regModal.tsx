@@ -64,7 +64,7 @@ export const RegModal = observer(() => {
                 password: values.password
             }).then((r) => {
                 console.log(r);
-                setUser({token: r.data.token, username: r.data.username, email: r.data.email})
+                setUser({token: r.data.token,id: r.data.id, username: r.data.username, email: r.data.email})
                 setIsLoading(false);
                 removeModal();
                 goToProfile();

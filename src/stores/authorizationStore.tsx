@@ -2,7 +2,7 @@ import {MainStore} from "./mainStore";
 import {makeObservable, observable} from "mobx";
 import axios from "axios";
 
-interface userProps{
+export interface userProps{
     token: string,
     id?: string,
     username: string,
