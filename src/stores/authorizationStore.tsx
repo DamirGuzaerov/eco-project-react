@@ -52,7 +52,7 @@ export default class authorizationStore {
     }
 
     private requestUserInfo() {
-        axios.get(`/profile/${window.localStorage.getItem("userId")}`).then((r) => {
+        axios.get(`/profile/${JSON.parse(window.localStorage.getItem("user")!).id}`).then((r) => {
             this.user = r.data
         }).catch((e) => {
             console.log(e);

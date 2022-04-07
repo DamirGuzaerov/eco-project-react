@@ -3,6 +3,7 @@ import styles from './profile.module.sass';
 import UserCard from "../../components/ui/userCard/userCard";
 import HistoryCard from "../../components/ui/historyCard/historyCard";
 import {observer} from "mobx-react";
+import CardsListSwitcher from "../../components/cardsListSwitcher/cardsListSwitcher";
 
 export const Profile = observer(() => {
     return (
@@ -12,14 +13,7 @@ export const Profile = observer(() => {
                 <div className={styles.userCardWrapper}>
                     <UserCard/>
                 </div>
-                <ul className={styles.infoCardsList}>
-                    <li className={styles.infoCardItem}>
-                        <HistoryCard/>
-                    </li>
-                    <li className={styles.infoCardItem}>
-                        <HistoryCard/>
-                    </li>
-                </ul>
+                <CardsListSwitcher/>
             </div>
         </div>
     );

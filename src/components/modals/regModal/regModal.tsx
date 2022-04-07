@@ -18,7 +18,7 @@ export const RegModal = observer(() => {
     } = useStores();
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
-    const goToProfile = () => navigate('/profile');
+    const goToProfile = () => navigate('/profile/promo_codes');
     const SignupSchema = Yup.object().shape({
         phone: Yup.string()
             .required("Введите номер телефона")

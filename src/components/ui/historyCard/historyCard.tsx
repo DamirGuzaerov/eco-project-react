@@ -13,13 +13,19 @@ function HistoryCard() {
                     <p id="material" className={styles.historyCardInfo}>
                         <ul className={styles.materialsList}>
                             <li className={styles.materialsListElement}>
-                                Пластик: 1 кг
+                                <span>
+                                    Пластик: 1 кг
+                                </span>
                             </li>
                             <li className={styles.materialsListElement}>
-                                Стекло: 3 кг
+                                <span>
+                                    Стекло: 3 кг
+                                </span>
                             </li>
                             <li className={styles.materialsListElement}>
-                                Бумага: 5 кг
+                                <span>
+                                    Бумага: 5 кг
+                                </span>
                             </li>
                         </ul>
                     </p>

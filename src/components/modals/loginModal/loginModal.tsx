@@ -34,7 +34,7 @@ export const LoginModal = observer(() => {
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const navigate = useNavigate();
-    const goToProfile = () => navigate('/profile');
+    const goToProfile = () => navigate('/profile/promo_codes');
 
     useEffect(() => {
         if (getIsAuth()) {

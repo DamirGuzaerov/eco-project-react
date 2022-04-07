@@ -5,7 +5,7 @@ import logo from "../../assets/images/logo.svg"
 import {LoginModal} from "../modals/loginModal/loginModal";
 import {useStores} from "../../utils/hooks/use-stores";
 import {observer} from "mobx-react";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, NavLink, useNavigate} from "react-router-dom";
 import ecocoin from '../../assets/images/ecoCoin.svg';
 
 const Header = observer(() => {
@@ -41,7 +41,7 @@ const Header = observer(() => {
                     <p>{getUserInfo().balance}</p>
                 </li>
 
-                <Link to={'/profile'} className={styles.navLink}>
+                <Link to={'/profile/promo_codes'} className={styles.navLink}>
                     <div className={styles.headerIcon}>
                         <img src={getUserInfo().photo_url} className={styles.photo_header}/>
                     </div>
@@ -65,24 +65,32 @@ const Header = observer(() => {
                     </div>
                     <ul className={styles.navList}>
                         <li className={styles.navLink}>
-                            <Link to={"/"}>
+                            <NavLink
+                                className={({ isActive }) => isActive ? styles.mainNavLinkActive : styles.mainNavLink}
+                                to={"/"}>
                                 Главная
-                            </Link>
+                            </NavLink>
                         </li>
                         <li className={styles.navLink}>
-                            <Link to={"/collectionPoints"}>
+                            <NavLink
+                                className={({ isActive }) => isActive ? styles.mainNavLinkActive : styles.mainNavLink}
+                                to={"/collectionPoints"}>
                                 Пункты сбора
-                            </Link>
+                            </NavLink>
                         </li>
                         <li className={styles.navLink}>
-                            <Link to={"/ecoMarket"}>
+                            <NavLink
+                                className={({ isActive }) => isActive ? styles.mainNavLinkActive : styles.mainNavLink}
+                                to={"/ecoMarket"}>
                                 ЭкоМаркет
-                            </Link>
+                            </NavLink>
                         </li>
                         <li className={styles.navLink}>
-                            <Link to={"/about"}>
+                            <NavLink
+                                className={({ isActive }) => isActive ? styles.mainNavLinkActive : styles.mainNavLink}
+                                to={"/about"}>
                                 О сервисе
-                            </Link>
+                            </NavLink>
                         </li>
                     </ul>
                 </nav>
