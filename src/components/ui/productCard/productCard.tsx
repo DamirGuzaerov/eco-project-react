@@ -13,7 +13,7 @@ interface ProductCardProps {
 }
 
 const ProductCard: FC<ProductCardProps> = (props) => {
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const {
         imgUrl,
         brand,
@@ -28,7 +28,7 @@ const ProductCard: FC<ProductCardProps> = (props) => {
             x: 0
         },
         to: {
-            background: 'rgba(255, 255, 255, 0)',
+            background: 'rgba(255, 255, 255, 0.1)',
             x: 250
         },
         config: {
@@ -37,8 +37,6 @@ const ProductCard: FC<ProductCardProps> = (props) => {
 
         reset: true,
         loop: true
-
-
     })
 
 
