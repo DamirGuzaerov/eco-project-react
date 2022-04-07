@@ -51,7 +51,6 @@
   justify-content: end
   padding-bottom: 6.5px
   width: 100%
-  min-width: fit-content
 
 .navCardImg
   height: auto
@@ -60,3 +59,27 @@
 img
   width: 100%
   object-fit: cover
+
+@media screen and (max-width: 795px)
+  .navCardTitle
+    font-size: 24px
+  .navCardText
+    font-size: 16px
+
+  .navCard
+    position: relative
+
+  img
+    max-height: 150px
+  .navCardImg
+    width: auto
+  .navCardImgWrapper
+    position: absolute
+    width: 50%
+    right: 0
+    bottom: 0
+
+@media screen and (max-width: 440px)
+
+
+

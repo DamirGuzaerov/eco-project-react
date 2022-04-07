@@ -54,7 +54,6 @@ const Market = () => {
                         {/*    <button className={styles.promoCodeBtn} onClick={()=>addModal(PromoCodeModal)}>Получить промокод</button>*/}
                         {/*</div>*/}
 
-
                         <ProductCard
                             imgUrl={imgUrl}
                             brand={'Nike'}
