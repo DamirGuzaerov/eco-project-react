@@ -32,7 +32,7 @@ export default class authorizationStore {
     public setUser = (user: userProps) => {
         this.user = {...user};
         console.log(this.user);
-        window.localStorage.setItem("userId",this.user.id!)
+        window.localStorage.setItem("user",JSON.stringify(this.user))
         document.cookie = `auth_token=${this.user.token}`
     }
 
@@ -46,8 +46,7 @@ export default class authorizationStore {
 
     public getUserInfo = () => {
         if(this.user.id==null){
-            this.requestUserInfo();
-            this.user.id = window.localStorage.getItem("userId")!;
+            this.user = JSON.parse(window.localStorage.getItem("user")!);
         }
         return this.user;
     }
