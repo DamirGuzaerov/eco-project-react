@@ -1,6 +1,5 @@
 import React, {FC} from "react";
 import styles from "./banner.module.sass";
-import Icon from "../ui/icon/icon";
 
 interface BannerProps{
     title:string,
@@ -18,7 +17,6 @@ const Banner :FC<BannerProps> = (props) => {
         text,
         btnText,
         bgImg} = props;
-
     return (
         <div className={styles.bannerWrapper} >
             <div className={styles.banner} style={{"backgroundColor": `${bgColor}`}}>
@@ -29,9 +27,7 @@ const Banner :FC<BannerProps> = (props) => {
                         <span className={styles.bannerBtnText}>{btnText}</span>
                     </button>
                 </div>
-                <div className={styles.bannerImg}>
-                    <object data={bgImg} type=""/>
-                </div>
+                <img className={styles.bannerImg} src={bgImg} />
             </div>
         </div>
     );

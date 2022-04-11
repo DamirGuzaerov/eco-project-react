@@ -61,3 +61,41 @@
 .bannerImg
   display: flex
   align-items: flex-end
+  object-fit: cover
+
+@media screen and (max-width: 795px)
+  .banner
+    position: relative
+    justify-content: center
+    border-radius: 0
+    min-height: 425px
+
+  .bannerTitle,.bannerText,.bannerBtn
+    position: relative
+    z-index: 1
+  .bannerImg
+    z-index: 0
+    position: absolute
+    height: 215px
+    object-fit: contain
+    bottom: 0
+    width: 100%
+
+  .bannerTitle
+    font-size: 24px
+    line-height: inherit
+
+  .bannerText
+    font-size: 16px
+    font-style: normal
+    font-weight: 400
+    line-height: 24px
+    color: rgba(0, 11, 38, 0.8)
+
+  .bannerBtn
+    width: 100%
+
+  .bannerContent
+    padding: 24px 16px 0
+    text-align: left
+

@@ -24,9 +24,7 @@ const NavCard :FC<NavCardProps> = (props) => {
                     </button>
                 </div>
                 <div className={styles.navCardImgWrapper}>
-                    <div className={styles.navCardImg}>
-                        <img src={bgImg} alt=""/>
-                    </div>
+                        <img className={styles.navCardImg} src={bgImg} alt=""/>
                 </div>
             </div>
         </div>

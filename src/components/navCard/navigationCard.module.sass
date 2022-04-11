@@ -22,6 +22,7 @@
 .navCardTitle
   margin-top: 0
   margin-bottom: 14px
+  line-height: inherit
 
 .navCardText
   margin-bottom: 46px
@@ -55,31 +56,37 @@
 .navCardImg
   height: auto
   width: 100%
-
-img
-  width: 100%
   object-fit: cover
 
 @media screen and (max-width: 795px)
   .navCardTitle
     font-size: 24px
+    line-height: inherit
   .navCardText
     font-size: 16px
-
   .navCard
+    margin-top: 0
     position: relative
-
-  img
+    background: #FFFFFF
+  .navCardImg
     max-height: 150px
+    width: auto
   .navCardImg
     width: auto
   .navCardImgWrapper
     position: absolute
     width: 50%
+    padding: 0
     right: 0
-    bottom: 0
 
-@media screen and (max-width: 440px)
+  .navCard__wrapper:not(:last-child)
+    margin-bottom: 24px
+
+
+@media screen and (min-width: 0px)
+  .navCardImgWrapper
+    bottom: -5px
+
 
 
 

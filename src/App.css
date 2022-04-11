@@ -100,4 +100,8 @@ a {
   text-decoration: none;
 }
 
-
+@media screen and (max-width: 795px){
+  .swiper-button-next,.swiper-button-prev{
+    display: none;
+  }
+}
