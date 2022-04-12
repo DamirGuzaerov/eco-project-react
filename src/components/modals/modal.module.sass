@@ -44,6 +44,12 @@ $button-success-hover: rgb(0, 150, 106)
   align-items: center
   z-index: 2
 
+@media screen and (max-width: 795px)
+  .overlay
+    background: #FFFFFF
+
+
+
 
 .modal__container
   background: #FFFFFF
@@ -82,6 +88,18 @@ $button-success-hover: rgb(0, 150, 106)
   flex-direction: row
   justify-content: space-between
   align-items: center
+
+@media screen and (max-width: 795px)
+  .modal__firstrow
+    position: relative
+    top: 0
+    margin-bottom: 50%
+
+  .modal__container
+    height: 100%
+    display: flex
+    flex-direction: column
+
 
 .modal__closeButton
   display: flex
