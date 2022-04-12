@@ -10,16 +10,22 @@ import {PromoCodeModal} from "../../components/modals/promoCodeModal/promoCodeMo
 import axios from "axios";
 
 const Market = () => {
-    const {modalStore: {addModal, removeModal}} = useStores();
+    const {modalStore: {addModal, removeModal}, authorizationStore: {getUserToken}} = useStores();
 
     useEffect(() => {
+
         axios.get('/market', {
+            headers: {
+                //@ts-ignore
+                Authorization: getUserToken(),
+                'Access-Control-Allow-Origin': '*'
+            },
             params: {
                 page_number: 1,
                 page_size: 6,
-                sexes: 'MAN',
-                item_categories: 'SHOES',
-                shops_id: 'nike'
+                sexes: ['MAN'],
+                item_categories: ['SHOES'],
+                shop_ids: ['ec4e2c1d-a495-4010-bbf9-67fc99c8be28']
             }
         }).then((r) => {
             console.log(r);
@@ -39,7 +45,13 @@ const Market = () => {
             </div>
             <div className={styles.mainContentWrapper}>
                 <div className={styles.temp}>
-                    <Filter/>
+                    <button className={styles.removeFiltersBtn}>
+                        Фильтры
+                    </button>
+                    <div className={styles.filters_wrapper}>
+
+                        <Filter/>
+                    </div>
                     <button className={styles.removeFiltersBtn}>Сбросить фильтры</button>
                 </div>
                 <div className={styles.productsTable}>
@@ -59,14 +71,14 @@ const Market = () => {
                             brand={'Nike'}
                             productName={"Nike Air Max 2021"}
                             productType={"Мужская обувь"}
-                            cost = {'1000'}
+                            cost={'1000'}
                         />
                         <ProductCard
                             imgUrl={imgUrl}
                             brand={'Nike'}
                             productName={"Nike Air Max 2021"}
                             productType={"Мужская обувь"}
-                            cost = {'1000'}
+                            cost={'1000'}
                         />
                     </div>
                     <div className={styles.productsTableRow}>
@@ -75,21 +87,21 @@ const Market = () => {
                             brand={'Nike'}
                             productName={"Nike Air Max 2021"}
                             productType={"Мужская обувь"}
-                            cost = {'1000'}
+                            cost={'1000'}
                         />
                         <ProductCard
                             imgUrl={imgUrl}
                             brand={'Nike'}
                             productName={"Nike Air Max 2021"}
                             productType={"Мужская обувь"}
-                            cost = {'1000'}
+                            cost={'1000'}
                         />
                         <ProductCard
                             imgUrl={imgUrl}
                             brand={'Nike'}
                             productName={"Nike Air Max 2021"}
                             productType={"Мужская обувь"}
-                            cost = {'1000'}
+                            cost={'1000'}
                         />
                     </div>
                 </div>

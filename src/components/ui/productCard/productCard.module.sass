@@ -6,11 +6,12 @@
 
 .productCardImgWrapper
   position: relative
-
   overflow: hidden
-
   object-fit: cover
   border-radius: 16px
+
+  img
+    width: 274px
 
 .productBrand
   margin: 0
@@ -46,3 +47,9 @@
   font-weight: 600
   color: black
   font-size: 14px
+
+@media screen and (max-width: 700px)
+  .productCardImgWrapper
+    img
+      max-width: 343px
+      width: 100%

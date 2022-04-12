@@ -1,5 +1,5 @@
 import styles from "./cardsListSwitcher.module.sass"
-import { NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {Outlet} from "react-router-dom";
 
 export const CardsListSwitcher = () => {

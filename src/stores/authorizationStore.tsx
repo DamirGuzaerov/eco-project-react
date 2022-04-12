@@ -2,7 +2,7 @@ import {MainStore} from "./mainStore";
 import {makeObservable, observable} from "mobx";
 import axios from "axios";
 
-export interface userProps{
+export interface userProps {
     token: string,
     id?: string,
     username: string,
@@ -11,7 +11,7 @@ export interface userProps{
     lastname?: string,
     email: string,
     role?: object,
-    balance? : number
+    balance?: number
 }
 
 export default class authorizationStore {
@@ -32,7 +32,7 @@ export default class authorizationStore {
     public setUser = (user: userProps) => {
         this.user = {...user};
         console.log(this.user);
-        window.localStorage.setItem("user",JSON.stringify(this.user))
+        window.localStorage.setItem("user", JSON.stringify(this.user))
         document.cookie = `auth_token=${this.user.token}`
     }
 
@@ -45,9 +45,9 @@ export default class authorizationStore {
     }
 
     public getUserInfo = () => {
-        if(this.user.id==null){
-            this.user = JSON.parse(window.localStorage.getItem("user")!);
-        }
+        // if (this.user.id == null) {
+        //     // this.user = JSON.parse(window.localStorage.getItem("user")!);
+        // }
         return this.user;
     }
 
@@ -60,7 +60,7 @@ export default class authorizationStore {
     }
 }
 
-function getCookie(name:string) {
+function getCookie(name: string) {
     let matches = document.cookie.match(new RegExp(
         "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
     ));

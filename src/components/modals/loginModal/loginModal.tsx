@@ -49,8 +49,8 @@ export const LoginModal = observer(() => {
             password: password,
         }).then((r) => {
             setUser({token: r.data.token, id: r.data.id, username: r.data.username, email: r.data.email})
-            console.log(r.data);
             setIsLoading(false);
+            localStorage.setItem('token', r.data.token);
             removeModal();
             goToProfile();
         }).catch((error) => {

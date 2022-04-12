@@ -16,10 +16,6 @@ const Header = observer(() => {
     const navigate = useNavigate();
     const goToProfile = () => navigate('/profile');
 
-    useEffect(() => {
-
-    }, [getIsAuth()])
-
     const nonAuthDisplay = () => {
         return (
             <li className={styles.navLink} onClick={() => openModal(LoginModal)}>
@@ -50,6 +46,7 @@ const Header = observer(() => {
             </>
         )
     }
+
 
     const openModal = (modal: any) => {
         removeModal();
@@ -101,8 +98,13 @@ const Header = observer(() => {
                         </div>
                         Казань
                     </li>
+
                     {getIsAuth() ? authDisplay() : nonAuthDisplay()}
                 </ul>
+
+                <button className={styles.burgerMenu}>
+                    <Icon name={'burger'} width={20} height={20}/>
+                </button>
             </header>
         </div>
     );

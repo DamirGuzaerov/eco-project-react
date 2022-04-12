@@ -5,6 +5,7 @@
   margin: 0 auto
   margin-bottom: 108px
 
+
 .marketTitleWrapper
   display: flex
   justify-content: space-between
@@ -60,6 +61,10 @@
   border-radius: 8px
   border: none
   padding: 12px 30px
+
+
+.removeFiltersBtn:first-child
+  display: none
 
   &:hover
     background-color: rgba(62, 80, 114, 0.30)
@@ -122,3 +127,33 @@
 
 .productsTable
   width: 100%
+
+
+@media screen and (max-width: 500px)
+  .removeFiltersBtn:first-child
+    margin: 0
+    display: flex
+    justify-content: center
+    max-width: 343px
+    width: 100%
+
+  .temp
+    margin: 0
+
+  .removeFiltersBtn:last-child
+    display: none
+
+  .filters_wrapper
+    display: none
+
+  .filterChipsWrapper
+    display: none
+
+  .mainContentWrapper
+    flex-direction: column
+    align-items: center
+
+  .productsTableRow
+    flex-direction: column
+    margin-top: 32px
+    align-items: center
