@@ -30,7 +30,6 @@ export interface IModal {
 export const ModalTemplate:FC<IModal> = observer(({children, title}: IModal) => {
     const ref = useRef() as MutableRefObject<HTMLInputElement>;
     const {modalStore: {removeModal}} = useStores();
-
     useModalClose(ref, () => removeModal());
 
     const closeModal = () => {
