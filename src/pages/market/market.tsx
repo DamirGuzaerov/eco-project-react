@@ -3,11 +3,12 @@ import styles from './market.module.sass'
 import balanceLogo from '../../assets/images/img_2.png'
 import ProductCard from "../../components/ui/productCard/productCard";
 import imgUrl from "../../assets/images/img_1.png";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {Filter} from "../../components/filters/filter";
 import {useStores} from "../../utils/hooks/use-stores";
 import {PromoCodeModal} from "../../components/modals/promoCodeModal/promoCodeModal";
 import axios from "axios";
+import {MobileFiltersModal} from "../../components/modals/mobileFiltersModal/mobileFiltersModal";
 
 const Market = () => {
     const {modalStore: {addModal, removeModal}, authorizationStore: {getUserToken}} = useStores();
@@ -45,7 +46,7 @@ const Market = () => {
             </div>
             <div className={styles.mainContentWrapper}>
                 <div className={styles.temp}>
-                    <button className={styles.removeFiltersBtn}>
+                    <button className={styles.removeFiltersBtn} onClick={() => addModal(MobileFiltersModal)}>
                         Фильтры
                     </button>
                     <div className={styles.filters_wrapper}>
