@@ -72,8 +72,8 @@
 .productsTableRow
   display: flex
   justify-content: space-between
-  &:not(:last-child)
-    margin-bottom: 48px
+
+
 
 .balanceCard
   position: relative
@@ -127,9 +127,14 @@
 
 .productsTable
   width: 100%
+  display: grid
+  grid-template-columns: repeat(auto-fill, 274px)
+  grid-row-gap: 48px
+  grid-column-gap: 24px
 
 
-@media screen and (max-width: 500px)
+
+@media screen and (max-width: 600px)
   .removeFiltersBtn:first-child
     margin: 0
     display: flex
@@ -157,3 +162,7 @@
     flex-direction: column
     margin-top: 32px
     align-items: center
+
+  .productsTable
+    margin-top: 32px
+    width: auto

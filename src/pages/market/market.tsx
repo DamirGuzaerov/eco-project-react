@@ -56,55 +56,51 @@ const Market = () => {
                     <button className={styles.removeFiltersBtn}>Сбросить фильтры</button>
                 </div>
                 <div className={styles.productsTable}>
-                    <div className={styles.productsTableRow}>
-                        {/*<div className={styles.balanceCard}>*/}
-                        {/*    <div className={styles.balanceCardTitle}>*/}
-                        {/*        На вашем балансе*/}
-                        {/*        <img className={styles.balanceLogo} src={balanceLogo}></img>*/}
-                        {/*        <div className={styles.balance}>200</div>*/}
-                        {/*    </div>*/}
-                        {/*    Вы можете обменять их на скидку 200 руб*/}
-                        {/*    <button className={styles.promoCodeBtn} onClick={()=>addModal(PromoCodeModal)}>Получить промокод</button>*/}
-                        {/*</div>*/}
+                    {/*<div className={styles.balanceCard}>*/}
+                    {/*    <div className={styles.balanceCardTitle}>*/}
+                    {/*        На вашем балансе*/}
+                    {/*        <img className={styles.balanceLogo} src={balanceLogo}></img>*/}
+                    {/*        <div className={styles.balance}>200</div>*/}
+                    {/*    </div>*/}
+                    {/*    Вы можете обменять их на скидку 200 руб*/}
+                    {/*    <button className={styles.promoCodeBtn} onClick={()=>addModal(PromoCodeModal)}>Получить промокод</button>*/}
+                    {/*</div>*/}
 
-                        <ProductCard
-                            imgUrl={imgUrl}
-                            brand={'Nike'}
-                            productName={"Nike Air Max 2021"}
-                            productType={"Мужская обувь"}
-                            cost={'1000'}
-                        />
-                        <ProductCard
-                            imgUrl={imgUrl}
-                            brand={'Nike'}
-                            productName={"Nike Air Max 2021"}
-                            productType={"Мужская обувь"}
-                            cost={'1000'}
-                        />
-                    </div>
-                    <div className={styles.productsTableRow}>
-                        <ProductCard
-                            imgUrl={imgUrl}
-                            brand={'Nike'}
-                            productName={"Nike Air Max 2021"}
-                            productType={"Мужская обувь"}
-                            cost={'1000'}
-                        />
-                        <ProductCard
-                            imgUrl={imgUrl}
-                            brand={'Nike'}
-                            productName={"Nike Air Max 2021"}
-                            productType={"Мужская обувь"}
-                            cost={'1000'}
-                        />
-                        <ProductCard
-                            imgUrl={imgUrl}
-                            brand={'Nike'}
-                            productName={"Nike Air Max 2021"}
-                            productType={"Мужская обувь"}
-                            cost={'1000'}
-                        />
-                    </div>
+                    <ProductCard
+                        imgUrl={imgUrl}
+                        brand={'Nike'}
+                        productName={"Nike Air Max 2021"}
+                        productType={"Мужская обувь"}
+                        cost={'1000'}
+                    />
+                    <ProductCard
+                        imgUrl={imgUrl}
+                        brand={'Nike'}
+                        productName={"Nike Air Max 2021"}
+                        productType={"Мужская обувь"}
+                        cost={'1000'}
+                    />
+                    <ProductCard
+                        imgUrl={imgUrl}
+                        brand={'Nike'}
+                        productName={"Nike Air Max 2021"}
+                        productType={"Мужская обувь"}
+                        cost={'1000'}
+                    />
+                    <ProductCard
+                        imgUrl={imgUrl}
+                        brand={'Nike'}
+                        productName={"Nike Air Max 2021"}
+                        productType={"Мужская обувь"}
+                        cost={'1000'}
+                    />
+                    <ProductCard
+                        imgUrl={imgUrl}
+                        brand={'Nike'}
+                        productName={"Nike Air Max 2021"}
+                        productType={"Мужская обувь"}
+                        cost={'1000'}
+                    />
                 </div>
             </div>
         </div>

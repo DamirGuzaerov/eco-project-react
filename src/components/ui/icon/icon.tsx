@@ -1,16 +1,17 @@
 import {FC} from "react";
 
-interface IconProps{
-    name:string;
-    width:number;
-    height:number;
+interface IconProps {
+    name: string;
+    width: number;
+    height: number;
 }
 
 const Icon: FC<IconProps> = (props) => {
     const {
         name,
-        width=24,
-        height=24} = props;
+        width = 24,
+        height = 24
+    } = props;
 
     return (
         <svg

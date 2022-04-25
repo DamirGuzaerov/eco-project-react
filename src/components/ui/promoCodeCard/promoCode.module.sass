@@ -32,6 +32,7 @@
 
 .promoCodeCardInfoLink
   @extend .promoCodeCardInfo
+  word-break: break-word
 
 .link
   color: #07C88E
@@ -52,3 +53,18 @@
   &:hover
     cursor: pointer
     background: rgba(52, 69, 91, 0.22)
+
+@media (max-width: 600px)
+  .promoCodeCard
+    flex-direction: column
+
+  .promoCodeCardInfoWrapper
+    flex-direction: column
+
+  .promoCodeImgWrapper
+    max-width: 100%
+    margin: 0
+
+
+  .promoCodeBtn
+    width: 100%
