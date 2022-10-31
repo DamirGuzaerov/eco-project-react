@@ -5,10 +5,23 @@ import 'swiper/css'
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter} from "react-router-dom";
+import mainStore from "./stores/mainStore";
+import {Provider} from 'mobx-react'
+import {ModalConstructor} from "./components/modals/modalConsturctor/modalConstructor";
+import axios from "axios";
+
+
+axios.defaults.baseURL = 'https://ecoapp.cloud.technokratos.com/eco-rus/api/v1';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <Provider {...mainStore}>
+          <BrowserRouter>
+            <App/>
+              <ModalConstructor/>
+          </BrowserRouter>
+      </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

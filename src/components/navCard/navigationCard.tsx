@@ -1,17 +1,22 @@
 import React, {FC} from "react";
 import styles from "./navigationCard.module.sass";
 import rightArrow from "../../assets/images/rightArrow.png"
+import {Link} from "react-router-dom";
 
-interface NavCardProps{
-    title:string,
-    text:string,
-    bgImg:string,
+interface NavCardProps {
+    title: string,
+    text: string,
+    bgImg: string,
+    link: string
 }
-const NavCard :FC<NavCardProps> = (props) => {
+
+const NavCard: FC<NavCardProps> = (props) => {
     const {
         title,
         text,
-        bgImg} = props;
+        bgImg,
+        link
+    } = props;
 
     return (
         <div className={styles.navCard__wrapper}>
@@ -19,14 +24,12 @@ const NavCard :FC<NavCardProps> = (props) => {
                 <div className={styles.navCardContent}>
                     <h1 className={styles.navCardTitle}>{title}</h1>
                     <p className={styles.navCardText}>{text}</p>
-                    <button className={styles.navCardBtn}>
+                    <Link to={link} className={styles.navCardBtn}>
                         <img src={rightArrow} alt=""/>
-                    </button>
+                    </Link>
                 </div>
                 <div className={styles.navCardImgWrapper}>
-                    <div className={styles.navCardImg}>
-                        <img src={bgImg} alt=""/>
-                    </div>
+                    <img className={styles.navCardImg} src={bgImg} alt=""/>
                 </div>
             </div>
         </div>

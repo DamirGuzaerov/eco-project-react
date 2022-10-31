@@ -2,6 +2,8 @@
   margin: 0 auto
   max-width: 1200px
   width: 100%
+  padding: 0 32px
+  margin-bottom: 108px
 
 .navCards
   display: flex
@@ -10,11 +12,17 @@
   margin-top: 48px
   width: 100%
 
-.mainPage
-  min-height: 100vh
-  display: grid
-  grid-template-rows: auto 1fr auto
-  grid-template-columns: 100%
-
 .navCardsWrapper
   width: 100%
+
+
+@media screen and (max-width: 795px)
+  .navCards
+    flex-direction: column
+    padding: 0 16px
+    position: relative
+    margin-top: 0
+    top: -100px
+    z-index: 1
+  .mainCards__wrapper
+    padding: 0

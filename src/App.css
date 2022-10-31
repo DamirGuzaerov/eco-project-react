@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Acme&family=Inter:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap');
 *{
   font-family: Inter;
   box-sizing: border-box;
@@ -65,6 +65,7 @@ html {
   justify-content: center;
 
   right: -22px;
+  z-index: 2;
 }
 
 .swiper-button-next::after{
@@ -88,9 +89,19 @@ html {
   justify-content: center;
 
   left: -22px;
+  z-index: 2;
 }
 
 .swiper-button-prev::after{
   display: none;
 }
 
+a {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 795px){
+  .swiper-button-next,.swiper-button-prev{
+    display: none;
+  }
+}
